@@ -1,0 +1,12 @@
+*.pyc
+*.pyo
+*.egg
+*.eggs
+*.DS_store
+*.egg-info/
+.python-version
+__pycache__/
+dist/
+.idea/
+.vscode/
+.venv*/
