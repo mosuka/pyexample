@@ -52,6 +52,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Test for coverage
         run: |
+          pip install coverage
           python setup.py test
           coverage run setup.py test
       - name: Coveralls
