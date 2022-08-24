@@ -62,7 +62,7 @@ jobs:
 
   coveralls_finish:
     name: Coveralls Finish
-    needs: coverall
+    needs: coveralls
     strategy:
       matrix:
         os: [ubuntu-latest]
