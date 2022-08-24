@@ -5,6 +5,7 @@
 *.DS_store
 *.egg-info/
 .python-version
+.coverage
 __pycache__/
 dist/
 .idea/
