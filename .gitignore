@@ -5,8 +5,11 @@
 *.DS_store
 *.egg-info/
 .python-version
-.coverage
 __pycache__/
+docs/_build/
+.pytest_cache/
+.coverage
+htmlcov/
 dist/
 .idea/
 .vscode/

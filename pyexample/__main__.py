@@ -2,13 +2,11 @@
 
 # -*- coding: utf-8 -*-
 
-
-from pyexample import NAME, VERSION
-from pyexample.calc import add
+from pyexample import __dist_name__, __version__
 
 
 def main():
-    print("%s: %s" % (NAME, VERSION))
+    print("%s: %s" % (__dist_name__, __version__))
 
 
 if __name__ == '__main__':

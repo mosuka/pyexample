@@ -1,7 +1,9 @@
-NAME = 'pyexample'
-"""str: NAME is the name of this program.
+import pkg_resources
+
+__dist_name__ = __name__
+"""str: __dist_name__ is the name of this distribution.
 """
 
-VERSION = '0.1.0'
-"""str: VERSION is the version of this program.
+__version__ = pkg_resources.get_distribution(__dist_name__).version
+"""str: __version__ is the version of this distribution.
 """
