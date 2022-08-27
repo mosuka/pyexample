@@ -1,9 +1,9 @@
-import pkg_resources
+import importlib.metadata
 
 __dist_name__ = __name__
 """str: __dist_name__ is the name of this distribution.
 """
 
-__version__ = pkg_resources.get_distribution(__dist_name__).version
+__version__ = importlib.metadata.version(__dist_name__)
 """str: __version__ is the version of this distribution.
 """
