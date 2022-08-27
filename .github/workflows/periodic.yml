@@ -30,4 +30,4 @@ jobs:
           black --check docs pyexample tests
       - name: Run tests
         run: |
-          pytest
+          pytest tests
