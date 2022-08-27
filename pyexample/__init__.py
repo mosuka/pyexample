@@ -1,4 +1,7 @@
 import importlib.metadata
+import sys
+
+sys.path.append("../")
 
 __dist_name__ = __name__
 """str: __dist_name__ is the name of this distribution.
