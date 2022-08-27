@@ -1,5 +1,5 @@
-from pyexample import __version__
+from pyexample import __dist_name__
 
 
-def test_version():
-    assert __version__ == "0.1.0"
+def test_dist_name():
+    assert __dist_name__ == "pyexample"
