@@ -9,5 +9,5 @@ def main():
     print("%s: %s" % (__dist_name__, __version__))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

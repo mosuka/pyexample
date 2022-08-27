@@ -41,42 +41,41 @@ Refer to the following URL to install Poetry.
 
 https://github.com/python-poetry/poetry
 
-Once Poetry is installed, change the virtual environment to be created in the project folder.
+
+Initialize the project
+======================
 
 .. code-block:: bash
 
-   $ poetry config virtualenvs.in-project true
-
-Setup virtual environment
--------------------------
-
-Prepare and activate the Python virtual environment with the following command.
-
-.. code-block:: bash
-
-   $ poetry install
-   $ source .venv/bin/activate
+   $ make init
 
 Run tests on Poetry
 ===================
 
 .. code-block:: bash
 
-   $ poetry run pytest
+   $ make test
+
+Run code formatter
+==================
+
+.. code-block:: bash
+
+   $ make format
 
 Run lint check
 ==============
 
 .. code-block:: bash
 
-   $ flake8 ./pyexample
+   $ make lint
 
 Run coverage on Poetry
 ======================
 
 .. code-block:: bash
 
-   $ poetry run pytest --cov=pyexample --cov-report=html -v ./tests
+   $ make coverage
 
 Run on Poetry
 =============
@@ -88,8 +87,15 @@ Build
 
 .. code-block:: bash
 
-   $ poetry build
+   $ make build
 
+Build documents
+===============
+
+.. code-block:: bash
+
+   $ make docs
+   
 Install
 =======
 
@@ -112,12 +118,3 @@ Uninstall
 .. code-block:: bash
 
    $ pip uninstall pyexample
-
-Build documents
-===============
-
-.. code-block:: bash
-
-   $ cd docs
-   $ make apidoc
-   $ make html
