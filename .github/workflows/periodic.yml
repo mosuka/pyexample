@@ -25,19 +25,16 @@ jobs:
         run: |
           curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
           echo "$HOME/.poetry/bin" >> $GITHUB_PATH
-          poetry --version
       - name: Install Poetry for OSX
         if: matrix.os == 'macos-latest'
         run: |
           curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
           echo "$HOME/.poetry/bin" >> $GITHUB_PATH
-          poetry --version
       - name: Install Poetry for Windows
         if: matrix.os == 'windows-latest'
         run: |
           (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python
           (Resolve-Path ~/.poetry/bin).Path >> $Env:GITHUB
-          poetry.exe --version
       # - name: Poetry Version
       #   run: |
       #     poetry --version
