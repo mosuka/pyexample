@@ -29,3 +29,4 @@ build:
 docs:
 	poetry run sphinx-apidoc -o ./docs_src ./pyexample
 	poetry run sphinx-build ./docs_src ./docs
+	echo "" > ./docs/.nojekyll
