@@ -14,15 +14,18 @@ lint:
 	poetry run black --check docs pyexample tests
 
 test:
-	poetry run pytest
+	poetry run pytest --benchmark-skip
 
 coverage:
 	poetry run pytest --cov=pyexample --cov-report=html -v ./tests
+
+benchmark:
+	poetry run pytest --benchmark-only --benchmark-autosave
 
 build:
 	poetry build
 
 .PHONY: docs
 docs:
-	poetry run sphinx-apidoc -o ./docs ./pyexample
-	poetry run sphinx-build ./docs ./docs/_build
+	poetry run sphinx-apidoc -o ./docs_src ./pyexample
+	poetry run sphinx-build ./docs_src ./docs

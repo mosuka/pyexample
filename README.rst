@@ -77,6 +77,13 @@ Run coverage on Poetry
 
    $ make coverage
 
+Run benchmark on Poetry
+=======================
+
+.. code-block:: bash
+
+   $ make benchmark
+
 Run on Poetry
 =============
 

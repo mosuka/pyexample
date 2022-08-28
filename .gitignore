@@ -10,6 +10,7 @@ docs/_build/
 .pytest_cache/
 .coverage
 htmlcov/
+.benchmarks/
 dist/
 .idea/
 .vscode/

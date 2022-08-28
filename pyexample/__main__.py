@@ -2,11 +2,11 @@
 
 # -*- coding: utf-8 -*-
 
-from pyexample import __dist_name__, __version__
+from pyexample import get_dist_name, get_version
 
 
 def main():
-    print("%s: %s" % (__dist_name__, __version__))
+    print("%s: %s" % (get_dist_name(), get_version()))
 
 
 if __name__ == "__main__":
