@@ -2,6 +2,10 @@
 PyExample
 =========
 
+|MIT license|
+
+.. |MIT license| image:: https://img.shields.io/badge/License-MIT-blue.svg
+   :target: https://lbesson.mit-license.org/
 
 This is an example Python project.
 
