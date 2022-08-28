@@ -5,6 +5,9 @@ PyExample
 
 This is an example Python project.
 
+https://mosuka.github.io/pyexample/
+
+
 How to setup this repository
 ============================
 
