@@ -94,7 +94,9 @@ Run benchmark on Poetry
 Run on Poetry
 =============
 
-$ poetry run pyexample
+.. code-block:: bash
+
+   $ make run
 
 Build
 =====
