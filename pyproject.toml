@@ -11,7 +11,7 @@ pyexample = "pyexample.__main__:main"
 python = "^3.10"
 
 [tool.poetry.dev-dependencies]
-pytest = "^7.1.2"
+pytest = "^7.2.1"
 pytest-cov = "^3.0.0"
 autopep8 = "^1.7.0"
 flake8 = "^5.0.4"
