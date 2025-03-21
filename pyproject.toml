@@ -24,6 +24,9 @@ black = "^22.6.0"
 isort = "^5.10.1"
 pytest-benchmark = "^3.4.1"
 
+[tool.poetry.group.dev.dependencies]
+setuptools = "^77.0.3"
+
 [tool.black]
 line-length = 119
 
