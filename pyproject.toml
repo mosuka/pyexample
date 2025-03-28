@@ -13,19 +13,20 @@ python-json-logger = "^3.3.0"
 types-pytz = "^2025.2.0.20250326"
 
 [tool.poetry.group.dev.dependencies]
+autopep8 = "^1.7.0"
+black = "^22.6.0"
+flake8 = "^5.0.4"
+isort = "^5.10.1"
+mypy = "^1.15.0"
 pytest = "^7.1.2"
 pytest-cov = "^3.0.0"
-autopep8 = "^1.7.0"
-flake8 = "^5.0.4"
+pytest-benchmark = "^3.4.1"
 restructuredtext-lint = "^1.4.0"
+Sphinx = "^5.1.1"
+setuptools = "^77.0.3"
 sphinx-autobuild = "^2021.3.14"
 sphinx-rtd-theme = "^1.0.0"
-Sphinx = "^5.1.1"
 sphinxcontrib-seqdiag = "^3.0.0"
-black = "^22.6.0"
-isort = "^5.10.1"
-pytest-benchmark = "^3.4.1"
-setuptools = "^77.0.3"
 
 [tool.black]
 line-length = 119
