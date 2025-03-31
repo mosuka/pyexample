@@ -50,10 +50,6 @@ jobs:
         if: matrix.os == 'macos-latest'
         run: |
           brew install jpeg
-          echo "LDFLAGS=-L/opt/homebrew/opt/jpeg/lib" >> $GITHUB_ENV
-          echo "CPPFLAGS=-I/opt/homebrew/opt/jpeg/include" >> $GITHUB_ENV
-          echo "PKG_CONFIG_PATH=/opt/homebrew/opt/jpeg/lib/pkgconfig" >> $GITHUB_ENV
-          echo "PATH=/opt/homebrew/opt/jpeg/bin:$PATH" >> $GITHUB_ENV
 
       - name: Install system dependencies for Windows
         if: matrix.os == 'windows-latest'
