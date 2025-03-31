@@ -1,20 +1,11 @@
-name: Regression
+name: Release
 
 on:
   workflow_dispatch:
+
   push:
-    paths:
-      - 'pyexample/**'
-      - 'tests/**'
-    branches:
-      - main
-  pull_request:
-    paths:
-      - 'pyexample/**'
-      - 'tests/**'
-    types:
-      - opened
-      - synchronize
+    tags:
+      - "v*.*.*"
 
 jobs:
   build:
