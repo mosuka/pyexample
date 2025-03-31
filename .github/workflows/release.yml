@@ -42,6 +42,21 @@ jobs:
         with:
           poetry-version: ${{ matrix.poetry-version }}
 
+      - name: Install system dependencies for Linux
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get install -y libjpeg-dev
+
+      - name: Install system dependencies for OSX
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          brew install jpeg
+
+      - name: Install system dependencies for Windows
+        run: |
+          choco install libjpeg-turbo -y
+        shell: powershell
+
       - name: Install dependencies
         run: |
           poetry install --no-interaction
