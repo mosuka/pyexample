@@ -11,37 +11,54 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ['3.10']
+        python-version: ['3.12']
+        poetry-version: ["1.8.3"]
+
     runs-on: ${{ matrix.os }}
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install Poetry for Linux
+
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v4
+        with:
+          poetry-version: ${{ matrix.poetry-version }}
+
+      - name: Install system dependencies for Linux
         if: matrix.os == 'ubuntu-latest'
         run: |
-          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-          echo "$HOME/.poetry/bin" >> $GITHUB_PATH
-      - name: Install Poetry for OSX
+          sudo apt-get install -y libjpeg-dev
+
+      - name: Install system dependencies for OSX
         if: matrix.os == 'macos-latest'
         run: |
-          curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
-          echo "$HOME/.poetry/bin" >> $GITHUB_PATH
-      - name: Install Poetry for Windows
+          brew install jpeg
+
+      - name: Install system dependencies for Windows
         if: matrix.os == 'windows-latest'
         run: |
-          (Invoke-WebRequest -Uri https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py -UseBasicParsing).Content | python
-          (Resolve-Path ~/.poetry/bin).Path >> $Env:GITHUB_PATH
+          choco install libjpeg-turbo -y
+        shell: powershell
+
       - name: Install dependencies
         run: |
           poetry install --no-interaction
+
       - name: Run lint
         run: |
           poetry run isort --check --diff docs pyexample tests
           poetry run black --check docs pyexample tests
+
+      - name: Type check with mypy
+        run: |
+          poetry run mypy ./pyexample ./tests
+
       - name: Run tests
         run: |
-          poetry run pytest
+          poetry run pytest --benchmark-skip --disable-warnings

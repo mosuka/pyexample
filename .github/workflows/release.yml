@@ -1,0 +1,102 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  build:
+    name: Build
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ['3.12']
+        poetry-version: ["1.8.3"]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install Poetry
+        uses: abatilo/actions-poetry@v4
+        with:
+          poetry-version: ${{ matrix.poetry-version }}
+
+      - name: Install system dependencies for Linux
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get install -y libjpeg-dev
+
+      - name: Install dependencies
+        run: |
+          poetry install --no-interaction
+
+      - name: Run lint
+        run: |
+          poetry run isort --check --diff docs pyexample tests
+          poetry run black --check docs pyexample tests
+
+      - name: Type check with mypy
+        run: |
+          poetry run mypy ./pyexample ./tests
+
+      - name: Run tests
+        run: |
+          poetry run pytest --benchmark-skip --disable-warnings
+
+      - name: Build package
+        run: |
+          poetry build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+            name: build-artifacts
+            path: ./dist
+
+  release:
+    name: Release
+
+    needs: [build]
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ['3.12']
+        poetry-version: ["1.8.3"]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    #   - name: Checkout repository
+    #     uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: ./dist
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ./dist/*
+          name: Release ${{ github.ref_name }}
+          tag_name: ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -22,7 +22,7 @@ The following command will install the dependent libraries needed to build Pytho
 
 .. code-block:: bash
 
-   $ sudo apt install -y libbz2-dev sqlite3 libsqlite3-dev libreadline-dev python3-tk
+   $ sudo apt install -y libbz2-dev sqlite3 libsqlite3-dev libreadline-dev python3-tk python3-dev libjpeg-dev zlib1g-dev
 
 Setup Pyenv
 -----------

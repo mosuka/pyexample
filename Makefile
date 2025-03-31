@@ -16,13 +16,13 @@ lint:
 	poetry run black --check docs pyexample tests
 
 test:
-	poetry run pytest --benchmark-skip
+	poetry run pytest --benchmark-skip --disable-warnings
 
 coverage:
-	poetry run pytest --cov=pyexample --cov-report=html -v ./tests
+	poetry run pytest --benchmark-skip --disable-warnings --cov=pyexample --cov-report=html -v ./tests
 
 benchmark:
-	poetry run pytest --benchmark-only --benchmark-autosave
+	poetry run pytest --benchmark-only --disable-warnings --benchmark-autosave
 
 build:
 	poetry build
