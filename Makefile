@@ -1,5 +1,7 @@
 .DEFAULT_GOAL := build
 
+VERSION := $(shell poetry version -s)
+
 init:
 	poetry config virtualenvs.in-project true
 	poetry install
@@ -15,14 +17,17 @@ lint:
 	poetry run isort --check --diff docs pyexample tests
 	poetry run black --check docs pyexample tests
 
+check:
+	poetry run mypy ./pyexample ./tests
+
 test:
-	poetry run pytest --benchmark-skip --disable-warnings
+	poetry run pytest --benchmark-skip --disable-warnings -v ./tests
 
 coverage:
 	poetry run pytest --benchmark-skip --disable-warnings --cov=pyexample --cov-report=html -v ./tests
 
 benchmark:
-	poetry run pytest --benchmark-only --disable-warnings --benchmark-autosave
+	poetry run pytest --benchmark-only --disable-warnings --benchmark-autosave -v ./tests
 
 build:
 	poetry build
@@ -35,3 +40,7 @@ docs:
 
 run:
 	poetry run pyexample
+
+tag:
+	git tag v$(VERSION)
+	git push origin v$(VERSION)
